@@ -127,10 +127,10 @@ require.register("scripts/album", function(exports, require, module) {
   var createSongRow = function(songNumber, songName, songLength) {
    var template =
        '<tr>'
-       '  <td class="col-md-1">' + songNumber + '</td>'
-       '  <td class="col-md-9">' + songName + '</td>'
-       '  <td class="col-md-2">' + songLength + '</td>'
-       '</tr>'
+     + '  <td class="col-md-1">' + songNumber + '</td>'
+     + '  <td class="col-md-9">' + songName + '</td>'
+     + '  <td class="col-md-2">' + songLength + '</td>'
+     +  '</tr>'
      ;
  
    return $(template);
@@ -189,18 +189,18 @@ require('./album');
 var buildAlbumThumbnail = function () {
   var template =
   '<div class="collection-album-container col-md-2">'
-   '  <img src="/images/album-placeholder.png"/>'
-   '  <div class="caption album-collection-info">'
-   '    <p>'
-   '      <a class="album-name" href="/album.html"> Album Name </a>'
-   '      <br/>'
-   '      <a href="/album.html"> Artist name </a>'
-   '      <br/>'
-   '      X songs'
-   '      <br/>'
-   '     </p>'
-   '   </div>'
-   '</div>';
+  + '  <img src="/images/album-placeholder.png"/>'
+  + '  <div class="caption album-collection-info">'
+  + '    <p>'
+  + '      <a class="album-name" href="/album.html"> Album Name </a>'
+  + '      <br/>'
+  + '      <a href="/album.html"> Artist name </a>'
+  + '      <br/>'
+  + '      X songs'
+  + '      <br/>'
+  + '     </p>'
+  + '   </div>'
+  + '</div>';
 
   return $(template);
 };
