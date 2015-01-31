@@ -173,9 +173,9 @@ blocJams.controller('Album.controller', ['$scope', 'SongPlayer', function($scope
  });
 
   
-  blocJams.directive('slider', ['$document', function($document){
+ blocJams.directive('slider', ['$document', function($document){
 
-     // Returns a number between 0 and 1 to determine where the mouse event happened along the slider bar.
+ // Returns a number between 0 and 1 to determine where the mouse event happened along the slider bar.
    var calculateSliderPercentFromMouseEvent = function($slider, event) {
      var offsetX =  event.pageX - $slider.offset().left; // Distance from left
      var sliderWidth = $slider.width(); // Width of slider
@@ -185,7 +185,39 @@ blocJams.controller('Album.controller', ['$scope', 'SongPlayer', function($scope
      return offsetXPercent;
    }
 
-          scope.trackThumb = function() {
+   return {
+     templateUrl: '/templates/directives/slider.html', // We'll create these files shortly.
+     replace: true,
+     restrict: 'E',
+     scope: {},
+    link: function(scope, element, attributes) {
+      scope.value = 0;
+      scope.max = 200;
+      var $seekBar = $(element);
+
+      var percentString = function () {
+         percent = Number(scope.value) / Number(scope.max);
+         return percent + "%";
+       }
+ 
+       scope.fillStyle = function() {
+        console.log("Fillstyle!");
+         return {width: percentString()};
+       }
+ 
+       scope.thumbStyle = function() {
+         return {left: percentString()};
+       }
+
+      scope.onClickSlider = function(event) {
+        console.log("Onclickslider");
+         var percent = calculateSliderPercentFromMouseEvent($seekBar, event);
+         scope.value = percent * scope.max;
+         console.log("Value: " + scope.value);
+       }
+
+      scope.trackThumb = function() {
+        console.log("Trackthumb clicked");
          $document.bind('mousemove.thumb', function(event){
            var percent = calculateSliderPercentFromMouseEvent($seekBar, event);
            scope.$apply(function(){
@@ -199,40 +231,6 @@ blocJams.controller('Album.controller', ['$scope', 'SongPlayer', function($scope
            $document.unbind('mouseup.thumb');
          });
        };
-     }]);
-
-  return {
-     templateUrl: '/templates/directives/slider.html', // We'll create these files shortly.
-     replace: true,
-     restrict: 'E',
-        scope: {}, // Creates a scope that exists only in this directive.
-    link: function(scope, element, attributes) {
-        // These values represent the progress into the song/volume bar, and its max value.
-        // For now, we're supplying arbitrary initial and max values.
-       scope.value = 0;
-       scope.max = 200;
-    var $seekBar = $(element);
-
-      var percentString = function () {
-         percent = Number(scope.value) / Number(scope.max)  * 100;
-         return percent + "%";
-       }
- 
-       scope.fillStyle = function() {
-         return {width: percentString()};
-       }
- 
-       scope.thumbStyle = function() {
-         return {left: percentString()};
-       }
- 
-     
     }
-  }
-
-       scope.onClickSlider = function(event) {
-        var percent = calculateSliderPercentFromMouseEvent($seekBar, event);
-        scope.value = percent * scope.max;
-       }
-
-  
+   };
+ }]);
