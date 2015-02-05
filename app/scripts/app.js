@@ -12,19 +12,11 @@
    albumArtUrl: '/images/album-placeholder.png',
  
    songs: [
-<<<<<<< HEAD
 { name: 'Blue', length: 163.38, audioUrl: '/music/placeholders/blue' },
       { name: 'Green', length: 105.66 , audioUrl: '/music/placeholders/green' },
       { name: 'Red', length: 270.14, audioUrl: '/music/placeholders/red' },
       { name: 'Pink', length: 154.81, audioUrl: '/music/placeholders/pink' },
       { name: 'Magenta', length: 375.92, audioUrl: '/music/placeholders/magenta' }
-=======
-        { name: 'Blue', length: 163.38, audioUrl: '/music/placeholders/blue' },
-        { name: 'Green', length: 105.66 , audioUrl: '/music/placeholders/green' },
-        { name: 'Red', length: 270.14, audioUrl: '/music/placeholders/red' },
-        { name: 'Pink', length: 154.81, audioUrl: '/music/placeholders/pink' },
-        { name: 'Magenta', length: 375.92, audioUrl: '/music/placeholders/magenta' }
->>>>>>> 17b817b75c518a1b22077d8ed0381e84ea3f93d6
     ]
  };
  
@@ -245,15 +237,9 @@ blocJams.service('SongPlayer', ['$rootScope', function($rootScope){
      templateUrl: '/templates/directives/slider.html', // We'll create these files shortly.
      replace: true,
      restrict: 'E',
-<<<<<<< HEAD
      scope: {
         onChange: '&'
       },
-=======
-       scope: {
-          onChange: '&'
-       },
->>>>>>> 17b817b75c518a1b22077d8ed0381e84ea3f93d6
     link: function(scope, element, attributes) {
       scope.value = 0;
       scope.max = 100;
@@ -276,26 +262,17 @@ blocJams.service('SongPlayer', ['$rootScope', function($rootScope){
  
 
       var percentString = function () {
-<<<<<<< HEAD
         var value = scope.value || 0;
         var max = scope.max || 100;
         percent = value / max * 100;
         return percent + "%";
       }
-=======
-          var value = scope.value || 0;
-          var max = scope.max || 100;
-          percent = value / max * 100;
-        return percent + "%";
-       }
 
       var notifyCallback = function(newValue) {
         if(typeof scope.onChange === 'function') {
           scope.onChange({value: newValue});
         }
       };
-
->>>>>>> 17b817b75c518a1b22077d8ed0381e84ea3f93d6
  
       scope.fillStyle = function() {
         console.log("Fillstyle!");
@@ -314,11 +291,7 @@ blocJams.service('SongPlayer', ['$rootScope', function($rootScope){
         
          var percent = calculateSliderPercentFromMouseEvent($seekBar, event);
          scope.value = percent * scope.max;
-<<<<<<< HEAD
          notifyCallback(scope.value);
-=======
-            notifyCallback(scope.value);
->>>>>>> 17b817b75c518a1b22077d8ed0381e84ea3f93d6
        }
 
       scope.trackThumb = function() {
@@ -326,11 +299,7 @@ blocJams.service('SongPlayer', ['$rootScope', function($rootScope){
            var percent = calculateSliderPercentFromMouseEvent($seekBar, event);
            scope.$apply(function(){
              scope.value = percent * scope.max;
-<<<<<<< HEAD
              notifyCallback(scope.value);
-=======
-              notifyCallback(scope.value);
->>>>>>> 17b817b75c518a1b22077d8ed0381e84ea3f93d6
            });
          });
  

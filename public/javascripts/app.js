@@ -286,19 +286,11 @@ var setupSeekBars = function() {
    albumArtUrl: '/images/album-placeholder.png',
  
    songs: [
-<<<<<<< HEAD
 { name: 'Blue', length: 163.38, audioUrl: '/music/placeholders/blue' },
       { name: 'Green', length: 105.66 , audioUrl: '/music/placeholders/green' },
       { name: 'Red', length: 270.14, audioUrl: '/music/placeholders/red' },
       { name: 'Pink', length: 154.81, audioUrl: '/music/placeholders/pink' },
       { name: 'Magenta', length: 375.92, audioUrl: '/music/placeholders/magenta' }
-=======
-        { name: 'Blue', length: 163.38, audioUrl: '/music/placeholders/blue' },
-        { name: 'Green', length: 105.66 , audioUrl: '/music/placeholders/green' },
-        { name: 'Red', length: 270.14, audioUrl: '/music/placeholders/red' },
-        { name: 'Pink', length: 154.81, audioUrl: '/music/placeholders/pink' },
-        { name: 'Magenta', length: 375.92, audioUrl: '/music/placeholders/magenta' }
->>>>>>> 17b817b75c518a1b22077d8ed0381e84ea3f93d6
     ]
  };
  
@@ -441,7 +433,6 @@ blocJams.service('SongPlayer', ['$rootScope', function($rootScope){
           var song = this.currentAlbum.songs[currentTrackIndex];
           this.setSong(this.currentAlbum, song);
      },
-<<<<<<< HEAD
 
      seek: function(time) {
        // Checks to make sure that a sound file is playing before seeking.
@@ -455,15 +446,6 @@ blocJams.service('SongPlayer', ['$rootScope', function($rootScope){
       return $rootScope.$on('sound:timeupdate', callback);
      },
 
-=======
-         seek: function(time) {
-          // Checks to make sure that a sound file is playing before seeking.
-          if(currentSoundFile) {
-          // Uses a Buzz method to set the time of the song.
-          currentSoundFile.setTime(time);
-       }
-     },
->>>>>>> 17b817b75c518a1b22077d8ed0381e84ea3f93d6
      setSong: function(album, song) {
       if (currentSoundFile) {
         currentSoundFile.stop();
@@ -485,11 +467,7 @@ blocJams.service('SongPlayer', ['$rootScope', function($rootScope){
    };
  }]);
   
-<<<<<<< HEAD
   blocJams.directive('slider', ['$document', function($document){
-=======
- blocJams.directive('slider', ['$document', function($document){
->>>>>>> 17b817b75c518a1b22077d8ed0381e84ea3f93d6
 
  // Returns a number between 0 and 1 to determine where the mouse event happened along the slider bar.
    var calculateSliderPercentFromMouseEvent = function($slider, event) {
@@ -500,7 +478,6 @@ blocJams.service('SongPlayer', ['$rootScope', function($rootScope){
      offsetXPercent = Math.min(1, offsetXPercent);
      return offsetXPercent;
    }
-<<<<<<< HEAD
    var numberFromValue = function(value, defaultValue) {
      if (typeof value === 'number') {
        return value;
@@ -514,7 +491,6 @@ blocJams.service('SongPlayer', ['$rootScope', function($rootScope){
        return Number(value);
      }
    }
-=======
 
       var numberFromValue = function(value, defaultValue) {
         if (typeof value === 'number') {
@@ -530,21 +506,14 @@ blocJams.service('SongPlayer', ['$rootScope', function($rootScope){
         }
    }
  
->>>>>>> 17b817b75c518a1b22077d8ed0381e84ea3f93d6
 
    return {
      templateUrl: '/templates/directives/slider.html', // We'll create these files shortly.
      replace: true,
      restrict: 'E',
-<<<<<<< HEAD
      scope: {
         onChange: '&'
       },
-=======
-       scope: {
-          onChange: '&'
-       },
->>>>>>> 17b817b75c518a1b22077d8ed0381e84ea3f93d6
     link: function(scope, element, attributes) {
       scope.value = 0;
       scope.max = 100;
@@ -557,16 +526,6 @@ blocJams.service('SongPlayer', ['$rootScope', function($rootScope){
         scope.max = numberFromValue(newValue, 100) || 100;
       });
 
-<<<<<<< HEAD
-      var percentString = function () {
-        var value = scope.value || 0;
-        var max = scope.max || 100;
-        percent = value / max * 100;
-        return percent + "%";
-      }
- 
-      scope.fillStyle = function() {
-=======
          attributes.$observe('value', function(newValue) {
         scope.value = numberFromValue(newValue, 0);
       });
@@ -577,21 +536,19 @@ blocJams.service('SongPlayer', ['$rootScope', function($rootScope){
  
 
       var percentString = function () {
-          var value = scope.value || 0;
-          var max = scope.max || 100;
-          percent = value / max * 100;
+        var value = scope.value || 0;
+        var max = scope.max || 100;
+        percent = value / max * 100;
         return percent + "%";
-       }
+      }
 
       var notifyCallback = function(newValue) {
         if(typeof scope.onChange === 'function') {
           scope.onChange({value: newValue});
         }
       };
-
  
-       scope.fillStyle = function() {
->>>>>>> 17b817b75c518a1b22077d8ed0381e84ea3f93d6
+      scope.fillStyle = function() {
         console.log("Fillstyle!");
         return {
           width: percentString()
@@ -608,11 +565,7 @@ blocJams.service('SongPlayer', ['$rootScope', function($rootScope){
         
          var percent = calculateSliderPercentFromMouseEvent($seekBar, event);
          scope.value = percent * scope.max;
-<<<<<<< HEAD
          notifyCallback(scope.value);
-=======
-            notifyCallback(scope.value);
->>>>>>> 17b817b75c518a1b22077d8ed0381e84ea3f93d6
        }
 
       scope.trackThumb = function() {
@@ -620,11 +573,7 @@ blocJams.service('SongPlayer', ['$rootScope', function($rootScope){
            var percent = calculateSliderPercentFromMouseEvent($seekBar, event);
            scope.$apply(function(){
              scope.value = percent * scope.max;
-<<<<<<< HEAD
              notifyCallback(scope.value);
-=======
-              notifyCallback(scope.value);
->>>>>>> 17b817b75c518a1b22077d8ed0381e84ea3f93d6
            });
          });
  
@@ -642,7 +591,6 @@ blocJams.service('SongPlayer', ['$rootScope', function($rootScope){
     }
    };
  }]);
-<<<<<<< HEAD
 
 blocJams.filter('timecode', function(){
   return function(seconds) {
@@ -672,8 +620,7 @@ blocJams.filter('timecode', function(){
    return output;
    }
  });
-=======
->>>>>>> 17b817b75c518a1b22077d8ed0381e84ea3f93d6
+
 });
 
 ;require.register("scripts/collection", function(exports, require, module) {
